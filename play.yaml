@@ -1,0 +1,25 @@
+Плейбук для монтирования:
+- hosts: servers
+  remote_user: root
+  tasks:
+    - name: Создание директории для монтирования Doc
+      shell: mkdir -p /mnt/doc
+    - name: Создание директории для монтирования Share
+      shell: mkdir -p /mnt/share
+    - name: Монтирование папки Doc
+      shell: mount //10.15.100.10/Doc /mnt/doc -o username=user1,password=P@ssw0rd
+    - name: Монтирование папки Share
+      shell: mount //10.15.100.10/Share /mnt/share -o username=user1,password=P@ssw0rd
+
+Плейбук для размонтирования:
+- hosts: servers
+  remote_user: root
+  tasks:
+    - name: Размонтирование папки Doc
+      shell: umount /mnt/doc
+    - name: Размонтирование папки Share
+      shell: umount /mnt/share
+    - name: Удаление папки Doc
+      shell: rm -rf /mnt/doc
+    - name: Удаление папки Share
+      shell: rm -rf /mnt/share 
